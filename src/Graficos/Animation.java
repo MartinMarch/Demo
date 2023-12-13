@@ -1,28 +1,34 @@
 package Graficos;
 
-// La clase Animation maneja la secuencia de sprites
 public class Animation {
+    private int frameActual;
+    private long tiempoUltimoFrame, retrasoFrame;
     private Sprite[] frames;
-    private int currentFrame;
-    private long frameTimer;
-    private long frameDelay;
 
-    public Animation(Sprite[] frames, long frameDelay) {
+    // Constructor de la clase Animation
+    public Animation(Sprite[] frames, long retrasoFrame) {
         this.frames = frames;
-        this.frameDelay = frameDelay;
-        this.frameTimer = 0;
-        this.currentFrame = 0;
+        this.retrasoFrame = retrasoFrame;
+        this.frameActual = 0;
+        this.tiempoUltimoFrame = 0;
     }
 
-    public void update(long elapsedTime) {
-        frameTimer += elapsedTime;
-        if (frameTimer > frameDelay) {
-            frameTimer = 0;
-            currentFrame = (currentFrame + 1) % frames.length;
+    // Método para actualizar la animación
+    public void actualizar(long tiempoActual) {
+        if (tiempoActual - tiempoUltimoFrame > retrasoFrame) {
+            frameActual++;
+            if (frameActual >= frames.length) {
+                frameActual = 0;
+            }
+            tiempoUltimoFrame = tiempoActual;
         }
     }
 
-    public Sprite getCurrentFrame() {
-        return frames[currentFrame];
+    // Método para obtener el sprite actual de la animación
+    public Sprite getSpriteActual() {
+        return frames[frameActual];
     }
+
+    // Getters y Setters si son necesarios
 }
+

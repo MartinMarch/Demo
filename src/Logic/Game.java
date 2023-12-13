@@ -1,38 +1,28 @@
 package Logic;
 import Entities.Jugador;
 import Graficos.Sprite;
-
-import javax.swing.JFrame;
-import java.awt.Graphics;
 import javax.swing.JPanel;
-import java.awt.Image;
+import java.awt.Graphics;
 import javax.swing.ImageIcon;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class Game extends JPanel {
-
     private Image backgroundImage;
     private Jugador jugador;
 
-
     public Game() {
+        // Cargar la imagen de fondo
         backgroundImage = new ImageIcon("CarpetaDeRecursos/escenari.jpg").getImage();
-        /*String[] rutasJugador = {"CarpetaDeRecursos/J1/j1MirandoHaciaDelante.png", "CarpetaDeRecursos/J1/j1MirandoHaciaDetras.png", "CarpetaDeRecursos/J1/j1MirandoHaciaIzquierda.png", "CarpetaDeRecursos/J1/j1MirandoHaciaDerecha.png",
-                "CarpetaDeRecursos/J1/j1CaminaHaciaDelante1.png","CarpetaDeRecursos/J1/j1CaminaHaciaDelante2.png"
-                ,"CarpetaDeRecursos/J1/j1CaminaHaciaDerecha2.png","CarpetaDeRecursos/J1/j1CaminaHaciaDerecha1.png"
-                ,"CarpetaDeRecursos/J1/j1CaminaHaciaIzquierda2.png", "CarpetaDeRecursos/J1/j1CaminaHaciaIzquierda1.png"
-                ,"CarpetaDeRecursos/J1/j1CaminaHaciaDetras2.png", "CarpetaDeRecursos/J1/j1CaminaHaciaDetras1.png"};*/
-        jugador = new Jugador(100, 100, Sprite.knight);
 
+        // Inicializar el personaje del jugador
+        Sprite[] spritesMovimiento = cargarSprites();
+        jugador = new Jugador(100, 100, spritesMovimiento, 100); // 100 es el frameDelay
 
+        // Gestionar el desplazamiento del jugador con el teclado
+        setFocusable(true);
+        requestFocus();
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -46,7 +36,16 @@ public class Game extends JPanel {
                 repaint();
             }
         });
-        setFocusable(true);
+    }
+
+    // Método para cargar los sprites del jugador
+    private Sprite[] cargarSprites() {
+        // Implementa la carga de los sprites aquí
+        // Puedes usar la clase Graficos.HojaSprite y Graficos.Sprite
+        // y la carpeta de sprites que tienes en CarpetaDeRecursos
+        // Por ejemplo:
+        // return new Sprite[] { new Sprite(32, 0, 0, HojaSprite.knight), ... };
+        return null; // Implementar la carga de sprites
     }
 
     @Override
@@ -55,13 +54,6 @@ public class Game extends JPanel {
         g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
         jugador.dibujar(g);
     }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Mi Juego 2D con Jugador");
-        Game game = new Game();
-        frame.add(game);
-        frame.setSize(800, 600);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
 }
+
+

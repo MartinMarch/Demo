@@ -1,41 +1,45 @@
 package Entities;
 import java.awt.*;
-import javax.swing.ImageIcon;
-
-import java.awt.Image;
-import javax.swing.ImageIcon;
-
-import java.awt.*;
 import Graficos.Sprite;
+import Graficos.Animation;
 
 public class Jugador {
     private int x, y;
-    private Sprite spriteActual;
-    // Supongamos que tienes sprites para cada dirección y acción
+    private int velocidad;
+    private Animation animacionActual;
     private Sprite[] spritesMovimiento;
 
-    public Jugador(int x, int y, Sprite[] spritesMovimiento) {
+    public Jugador(int x, int y, Sprite[] spritesMovimiento, long frameDelay) {
         this.x = x;
         this.y = y;
         this.spritesMovimiento = spritesMovimiento;
-        this.spriteActual = spritesMovimiento[0]; // Iniciar con un sprite por defecto
+        this.animacionActual = new Animation(spritesMovimiento, frameDelay);
     }
 
     public void mover(char direccion, int velocidad) {
-        // Cambia el spriteActual según la dirección y la acción
-        // ...
+        this.velocidad = velocidad;
+        switch (direccion) {
+            case 'A': // Izquierda
+                x -= velocidad;
+                break;
+            case 'D': // Derecha
+                x += velocidad;
+                break;
+            case 'W': // Arriba
+                y -= velocidad;
+                break;
+            case 'S': // Abajo
+                y += velocidad;
+                break;
+        }
+        animacionActual.actualizar(System.currentTimeMillis());
     }
 
     public void dibujar(Graphics g) {
-        g.drawImage(spriteActual.obtenerImagen(), x, y, null);
-    }
-
-    // Método en Sprite para obtener la imagen
-    public Image obtenerImagen() {
-        // Convierte el array de píxeles a una imagen
-        // ...
+        g.drawImage(animacionActual.getSpriteActual().obtenerImagen(), x, y, null);
     }
 }
+
 
 /*public class Jugador {
     private int x, y;
