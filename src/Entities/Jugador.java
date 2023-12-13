@@ -41,7 +41,23 @@ public class Jugador {
 
 
     public void dibujar(Graphics g) {
-        g.drawImage(animacionActual.getSpriteActual().obtenerImagen(), x, y, null);
+        // Obtener el sprite actual de la animación.
+        Sprite spriteActual = animacionActual.getSpriteActual();
+
+        // Verificar que el sprite actual no es nulo
+        if (spriteActual != null) {
+            Image imagen = spriteActual.obtenerImagen();
+            if (imagen != null) {
+                // Dibujar el sprite en la posición actual del jugador.
+                g.drawImage(imagen, x, y, null);
+            } else {
+                // Opcional: Manejar el caso en que la imagen no se haya cargado correctamente.
+                System.out.println("Imagen del sprite no encontrada");
+            }
+        } else {
+            // Opcional: Manejar el caso en que el sprite actual sea nulo.
+            System.out.println("Sprite actual es nulo");
+        }
     }
 }
 

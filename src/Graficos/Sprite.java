@@ -28,17 +28,14 @@ public class Sprite {
         this.y = fila * lado;
         this.hoja = hoja;
         this.pixeles = new int[lado * lado];
-        cargar();
-    }
-
-    // Método para cargar el sprite desde la hoja de sprites
-    private void cargar() {
         for (int y = 0; y < lado; y++) {
             for (int x = 0; x < lado; x++) {
                 pixeles[x + y * lado] = hoja.pixeles[(x + this.x) + (y + this.y) * hoja.getAncho()];
             }
         }
+
     }
+
 
     // Getters y Setters si son necesarios
     public int[] getPixeles() {

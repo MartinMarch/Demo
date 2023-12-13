@@ -9,17 +9,12 @@ public class HojaSprite {
     private final int alto;
     public final int[] pixeles;
     // Coleccion de hojas de sprites
-    public static HojaSprite knight = new HojaSprite("/Sprites/knight.png", 320, 320);
+    public static HojaSprite knight = new HojaSprite("CarpetaDeRecursos/Sprites/knight.png", 320, 320);
     // Constructor de la clase HojaSprite
     public HojaSprite(String ruta, int ancho, int alto) {
         this.ancho = ancho;
         this.alto = alto;
         this.pixeles = new int[ancho * alto];
-        cargarHojaSprite(ruta);
-    }
-
-    // Método para cargar la imagen de la hoja de sprites
-    private void cargarHojaSprite(String ruta) {
         try {
             BufferedImage imagen = ImageIO.read(getClass().getResourceAsStream(ruta));
             imagen.getRGB(0, 0, ancho, alto, pixeles, 0, ancho);
