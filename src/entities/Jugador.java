@@ -1,7 +1,6 @@
-package Entities;
+package entities;
 import java.awt.*;
-import Graficos.Sprite;
-import Graficos.Animation;
+import graficos.Sprite;
 
 public class Jugador {
     private int x, y;

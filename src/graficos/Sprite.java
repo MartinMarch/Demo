@@ -1,4 +1,4 @@
-package Graficos;
+package graficos;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
@@ -6,8 +6,10 @@ import java.awt.image.DataBufferInt;
 public class Sprite {
     private final int lado; // El lado de un sprite en un sprite sheet cuadrado
     private int x, y; // Posición del sprite en la hoja de sprites
-    private int[] pixeles; // Pixeles del sprite
+    public int[] pixeles; // Pixeles del sprite
     private final HojaSprite hoja; // La hoja de sprites a la que pertenece este sprite
+    public static Sprite prueba = new Sprite(320, 0, 0, HojaSprite.prueba);
+    public static Sprite cave = new Sprite(320, 0, 0, HojaSprite.cave);
     public static Sprite knightNorte0 = new Sprite(32, 0, 0, HojaSprite.knight);
     public static Sprite knightNorte1 = new Sprite(32, 0, 1, HojaSprite.knight);
     public static Sprite knightNorte2 = new Sprite(32, 0, 2, HojaSprite.knight);

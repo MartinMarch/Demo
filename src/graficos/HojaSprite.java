@@ -1,4 +1,4 @@
-package Graficos;
+package graficos;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -9,7 +9,11 @@ public class HojaSprite {
     private final int alto;
     public final int[] pixeles;
     // Coleccion de hojas de sprites
-    public static HojaSprite knight = new HojaSprite("CarpetaDeRecursos/Sprites/knight.png", 320, 320);
+    public static HojaSprite knight = new HojaSprite("/sprites/knight.png", 320, 320);
+    public static HojaSprite cave = new HojaSprite("/sprites/cave.png", 320, 320);
+    public static HojaSprite prueba = new HojaSprite("/sprites/cave.png", 320, 320);
+
+
     // Constructor de la clase HojaSprite
     public HojaSprite(String ruta, int ancho, int alto) {
         this.ancho = ancho;
@@ -20,7 +24,6 @@ public class HojaSprite {
             imagen.getRGB(0, 0, ancho, alto, pixeles, 0, ancho);
         } catch (IOException e) {
             e.printStackTrace();
-            // Gestionar el error de la carga de la imagen
         }
     }
 
