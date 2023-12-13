@@ -29,6 +29,10 @@ public class Animation {
         return frames[frameActual];
     }
 
+    public void setFrames(Sprite[] frames){
+        this.frames = frames;
+    }
+
     // Getters y Setters si son necesarios
 }
 

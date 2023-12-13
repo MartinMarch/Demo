@@ -1,5 +1,6 @@
 package Logic;
 import Entities.Jugador;
+import Graficos.HojaSprite;
 import Graficos.Sprite;
 import javax.swing.JPanel;
 import java.awt.Graphics;
@@ -44,8 +45,7 @@ public class Game extends JPanel {
         // Puedes usar la clase Graficos.HojaSprite y Graficos.Sprite
         // y la carpeta de sprites que tienes en CarpetaDeRecursos
         // Por ejemplo:
-        // return new Sprite[] { new Sprite(32, 0, 0, HojaSprite.knight), ... };
-        return null; // Implementar la carga de sprites
+        return new Sprite[] { new Sprite(32, 0, 0, HojaSprite.knight)};
     }
 
     @Override

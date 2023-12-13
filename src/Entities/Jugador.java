@@ -21,19 +21,24 @@ public class Jugador {
         switch (direccion) {
             case 'A': // Izquierda
                 x -= velocidad;
+                animacionActual.setFrames(new Sprite[]{Sprite.knightOeste0, Sprite.knightOeste1, Sprite.knightOeste2});
                 break;
             case 'D': // Derecha
                 x += velocidad;
+                animacionActual.setFrames(new Sprite[]{Sprite.knightEste0, Sprite.knightEste1, Sprite.knightEste2});
                 break;
             case 'W': // Arriba
                 y -= velocidad;
+                animacionActual.setFrames(new Sprite[]{Sprite.knightNorte0, Sprite.knightNorte1, Sprite.knightNorte2});
                 break;
             case 'S': // Abajo
                 y += velocidad;
+                animacionActual.setFrames(new Sprite[]{Sprite.knightSur0, Sprite.knightSur1, Sprite.knightSur2});
                 break;
         }
         animacionActual.actualizar(System.currentTimeMillis());
     }
+
 
     public void dibujar(Graphics g) {
         g.drawImage(animacionActual.getSpriteActual().obtenerImagen(), x, y, null);
