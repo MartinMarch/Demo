@@ -10,8 +10,8 @@ import java.awt.image.DataBufferInt;
 
 public class Game extends Canvas implements Runnable{
     private static final long serialVersionUID = 1L;
-    private static final int ANCHO = 800;
-    private static final int ALTO = 600;
+    private static final int ANCHO = 96;
+    private static final int ALTO = 96;
     private static volatile boolean enFuncionamiento = false;
 
     private static final String NOMBRE = "Mi Demo 2D";
@@ -28,6 +28,7 @@ public class Game extends Canvas implements Runnable{
 
     private static BufferedImage imagen = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
     private static int[] pixeles = ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
+    private static final ImageIcon icono = new ImageIcon(Game.class.getResource("/icon/icono1.png"));
 
     private Game() {
         setPreferredSize(new java.awt.Dimension(ANCHO, ALTO));
@@ -39,7 +40,8 @@ public class Game extends Canvas implements Runnable{
 
         ventana = new JFrame(NOMBRE);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setResizable(false);
+        ventana.setResizable(true);
+        ventana.setIconImage(icono.getImage());
         ventana.setLayout(new BorderLayout());
         ventana.add(this, BorderLayout.CENTER);
         ventana.pack();
@@ -70,6 +72,18 @@ public class Game extends Canvas implements Runnable{
     private void actualizar() {
         // Actualizar el estado del juego
         teclado.actualizar();
+        if (teclado.arriba){
+            y++;
+        }
+        if(teclado.abajo){
+            y--;
+        }
+        if(teclado.derecha){
+            x--;
+        }
+        if(teclado.izquierda){
+            x++;
+        }
 
         aps++;
     }
@@ -88,6 +102,8 @@ public class Game extends Canvas implements Runnable{
 
         g.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);
         g.dispose();
+
+        estrategia.show();
 
         fps++;
     }
@@ -116,7 +132,9 @@ public class Game extends Canvas implements Runnable{
                 actualizar();
                 delta--;
             }
+
             mostrar();
+
             if(System.nanoTime() - referenciaContador > NS_POR_SEGUNDO){
                 ventana.setTitle(NOMBRE + " || APS: " + aps + " || FPS: " + fps);
                 aps = 0;

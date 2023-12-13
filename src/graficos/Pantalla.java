@@ -1,5 +1,7 @@
 package graficos;
 
+import mapa.tiles.Tile;
+
 public class Pantalla {
     private final int ancho;
     private final int alto;
@@ -33,11 +35,24 @@ public class Pantalla {
                 if(posicionX < 0 || posicionX >= ancho){
                     continue;
                 }
-                pixeles[posicionX + posicionY * ancho] = Sprite.knightOeste0.pixeles[(x & MASCARA_SPRITE) + (y & MASCARA_SPRITE) * LADO_SPRITE];
+                //Temporal
+                pixeles[posicionX + posicionY * ancho] = Sprite.grass1.pixeles[(x & MASCARA_SPRITE) + (y & MASCARA_SPRITE) * LADO_SPRITE];
             }
         }
     }
 
-    // Getters y Setters si son necesarios
+    public void mostrarTile(int compensacionX, int compensacionY, Tile tile){
+        for(int y = 0; y < tile.sprite.getLado(); y++){
+            int posicionY = y + compensacionY;
+            for(int x = 0; x < tile.sprite.getLado(); x++){
+                int posicionX = x + compensacionX;
+                if(posicionX < 0 || posicionX > ancho || posicionY < 0 ||posicionY > alto) {
+                    break;
+                }
+                pixeles[posicionX + posicionY * ancho] = tile.sprite.pixeles[x + y * tile.sprite.getLado()];
+            }
+        }
+    }
+
 }
 
