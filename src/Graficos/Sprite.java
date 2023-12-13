@@ -8,7 +8,18 @@ public class Sprite {
     private int x, y; // Posición del sprite en la hoja de sprites
     private int[] pixeles; // Pixeles del sprite
     private final HojaSprite hoja; // La hoja de sprites a la que pertenece este sprite
-    public static Sprite knight = new Sprite(32, 0, 0, HojaSprite.knight);
+    public static Sprite knightNorte0 = new Sprite(32, 0, 0, HojaSprite.knight);
+    public static Sprite knightNorte1 = new Sprite(32, 0, 1, HojaSprite.knight);
+    public static Sprite knightNorte2 = new Sprite(32, 0, 2, HojaSprite.knight);
+    public static Sprite knightEste0 = new Sprite(32, 1, 0, HojaSprite.knight);
+    public static Sprite knightEste1 = new Sprite(32, 1, 1, HojaSprite.knight);
+    public static Sprite knightEste2 = new Sprite(32, 1, 2, HojaSprite.knight);
+    public static Sprite knightSur0 = new Sprite(32, 2, 0, HojaSprite.knight);
+    public static Sprite knightSur1 = new Sprite(32, 2, 1, HojaSprite.knight);
+    public static Sprite knightSur2 = new Sprite(32, 2, 2, HojaSprite.knight);
+    public static Sprite knightOeste0 = new Sprite(32, 3, 0, HojaSprite.knight);
+    public static Sprite knightOeste1 = new Sprite(32, 3, 1, HojaSprite.knight);
+    public static Sprite knightOeste2 = new Sprite(32, 3, 2, HojaSprite.knight);
 
     // Constructor de la clase Sprite
     public Sprite(final int lado, final int columna, final int fila, final HojaSprite hoja) {
