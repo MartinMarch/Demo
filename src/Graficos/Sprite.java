@@ -1,5 +1,7 @@
 package Graficos;
 
+import java.awt.*;
+
 public final class Sprite {
     private final int lado;
     private int x;
@@ -21,6 +23,5 @@ public final class Sprite {
             }
         }
     }
-
 
 }

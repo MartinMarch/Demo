@@ -5,7 +5,39 @@ import javax.swing.ImageIcon;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
+import java.awt.*;
+import Graficos.Sprite;
+
 public class Jugador {
+    private int x, y;
+    private Sprite spriteActual;
+    // Supongamos que tienes sprites para cada dirección y acción
+    private Sprite[] spritesMovimiento;
+
+    public Jugador(int x, int y, Sprite[] spritesMovimiento) {
+        this.x = x;
+        this.y = y;
+        this.spritesMovimiento = spritesMovimiento;
+        this.spriteActual = spritesMovimiento[0]; // Iniciar con un sprite por defecto
+    }
+
+    public void mover(char direccion, int velocidad) {
+        // Cambia el spriteActual según la dirección y la acción
+        // ...
+    }
+
+    public void dibujar(Graphics g) {
+        g.drawImage(spriteActual.obtenerImagen(), x, y, null);
+    }
+
+    // Método en Sprite para obtener la imagen
+    public Image obtenerImagen() {
+        // Convierte el array de píxeles a una imagen
+        // ...
+    }
+}
+
+/*public class Jugador {
     private int x, y;
     private Image[] imagenes;
     private int indiceImagenActual;
@@ -69,7 +101,7 @@ public class Jugador {
         }
 
         // Métodos getters y setters para x, y...
-    }
+    }*/
 
 
 

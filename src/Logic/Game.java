@@ -1,5 +1,6 @@
 package Logic;
 import Entities.Jugador;
+import Graficos.Sprite;
 
 import javax.swing.JFrame;
 import java.awt.Graphics;
@@ -21,14 +22,15 @@ public class Game extends JPanel {
     private Image backgroundImage;
     private Jugador jugador;
 
+
     public Game() {
         backgroundImage = new ImageIcon("CarpetaDeRecursos/escenari.jpg").getImage();
-        String[] rutasJugador = {"CarpetaDeRecursos/J1/j1MirandoHaciaDelante.png", "CarpetaDeRecursos/J1/j1MirandoHaciaDetras.png", "CarpetaDeRecursos/J1/j1MirandoHaciaIzquierda.png", "CarpetaDeRecursos/J1/j1MirandoHaciaDerecha.png",
+        /*String[] rutasJugador = {"CarpetaDeRecursos/J1/j1MirandoHaciaDelante.png", "CarpetaDeRecursos/J1/j1MirandoHaciaDetras.png", "CarpetaDeRecursos/J1/j1MirandoHaciaIzquierda.png", "CarpetaDeRecursos/J1/j1MirandoHaciaDerecha.png",
                 "CarpetaDeRecursos/J1/j1CaminaHaciaDelante1.png","CarpetaDeRecursos/J1/j1CaminaHaciaDelante2.png"
                 ,"CarpetaDeRecursos/J1/j1CaminaHaciaDerecha2.png","CarpetaDeRecursos/J1/j1CaminaHaciaDerecha1.png"
                 ,"CarpetaDeRecursos/J1/j1CaminaHaciaIzquierda2.png", "CarpetaDeRecursos/J1/j1CaminaHaciaIzquierda1.png"
-                ,"CarpetaDeRecursos/J1/j1CaminaHaciaDetras2.png", "CarpetaDeRecursos/J1/j1CaminaHaciaDetras1.png"};
-        jugador = new Jugador(100, 100, rutasJugador);
+                ,"CarpetaDeRecursos/J1/j1CaminaHaciaDetras2.png", "CarpetaDeRecursos/J1/j1CaminaHaciaDetras1.png"};*/
+        jugador = new Jugador(100, 100, Sprite.knight);
 
 
         addKeyListener(new KeyAdapter() {
