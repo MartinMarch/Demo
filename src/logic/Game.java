@@ -1,6 +1,8 @@
 package logic;
 import control.Keyboard;
 import graficos.Pantalla;
+import mapa.Mapa;
+import mapa.MapaGenerado;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,11 +12,13 @@ import java.awt.image.DataBufferInt;
 
 public class Game extends Canvas implements Runnable{
     private static final long serialVersionUID = 1L;
-    private static final int ANCHO = 96;
-    private static final int ALTO = 96;
+    private static final int ANCHO = 800;
+    private static final int ALTO = 600;
     private static volatile boolean enFuncionamiento = false;
 
     private static final String NOMBRE = "Mi Demo 2D";
+    private static String CONTADOR_APS = "";
+    private static String CONTADOR_FPS = "";
     private static int aps = 0;
     private static int fps = 0;
     private static int x = 0;
@@ -25,28 +29,33 @@ public class Game extends Canvas implements Runnable{
     private static Thread thread;
     private static Keyboard teclado;
     private static Pantalla pantalla;
+    private static Mapa mapa;
 
     private static BufferedImage imagen = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
     private static int[] pixeles = ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
     private static final ImageIcon icono = new ImageIcon(Game.class.getResource("/icon/icono1.png"));
 
     private Game() {
-        setPreferredSize(new java.awt.Dimension(ANCHO, ALTO));
+        setPreferredSize(new Dimension(ANCHO, ALTO));
 
         pantalla = new Pantalla(ANCHO, ALTO);
+
+        mapa = new MapaGenerado(128, 128);
 
         teclado = new Keyboard();
         addKeyListener(teclado);
 
         ventana = new JFrame(NOMBRE);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setResizable(true);
+        ventana.setResizable(false);
         ventana.setIconImage(icono.getImage());
         ventana.setLayout(new BorderLayout());
         ventana.add(this, BorderLayout.CENTER);
+        ventana.setUndecorated(true);
         ventana.pack();
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
+
     }
 
     public static void main(String[] args) {
@@ -73,16 +82,19 @@ public class Game extends Canvas implements Runnable{
         // Actualizar el estado del juego
         teclado.actualizar();
         if (teclado.arriba){
-            y++;
-        }
-        if(teclado.abajo){
             y--;
         }
+        if(teclado.abajo){
+            y++;
+        }
         if(teclado.derecha){
-            x--;
+            x++;
         }
         if(teclado.izquierda){
-            x++;
+            x--;
+        }
+        if(teclado.salir){
+            System.exit(0);
         }
 
         aps++;
@@ -95,12 +107,17 @@ public class Game extends Canvas implements Runnable{
             return;
         }
         pantalla.limpiar();
-        pantalla.mostrar(x, y);
+
+        mapa.mostrar(x, y, pantalla);
 
         System.arraycopy(pantalla.pixeles, 0, pixeles, 0, pixeles.length);
         Graphics g = estrategia.getDrawGraphics();
 
         g.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);
+        g.setColor(Color.WHITE);
+        g.fillRect(ANCHO/2, ALTO/2, 32, 32);
+        g.drawString(CONTADOR_APS, 10, 20);
+        g.drawString(CONTADOR_FPS, 10, 35);
         g.dispose();
 
         estrategia.show();
@@ -136,7 +153,9 @@ public class Game extends Canvas implements Runnable{
             mostrar();
 
             if(System.nanoTime() - referenciaContador > NS_POR_SEGUNDO){
-                ventana.setTitle(NOMBRE + " || APS: " + aps + " || FPS: " + fps);
+                CONTADOR_APS = "APS: " + aps;
+                CONTADOR_FPS = "FPS: " + fps;
+
                 aps = 0;
                 fps = 0;
                 referenciaContador = System.nanoTime();

@@ -15,7 +15,6 @@ public class HojaSprite {
     static{
         try {
             prueba = new HojaSprite("/sprites/Prueba.png", 320, 320);
-            mapa = new HojaSprite("/sprites/GuiaMapa.png", 764, 350);
             grass = new HojaSprite("/sprites/grass.png",192,64);
 
             System.out.println("hojaSprite creada correctamente");

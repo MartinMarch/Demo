@@ -3,9 +3,8 @@ package mapa.tiles;
 import graficos.Pantalla;
 import graficos.Sprite;
 
-public class TilePrueba extends Tile {
-    public TilePrueba(Sprite sprite) {
+public class TileVacio extends Tile{
+    public TileVacio(Sprite sprite) {
         super(sprite);
     }
-
 }

@@ -9,12 +9,14 @@ private final boolean[] teclas = new boolean[numeroTeclas];
     public boolean abajo;
     public boolean izquierda;
     public boolean derecha;
+    public boolean salir;
 
     public void actualizar() {
         arriba = teclas[KeyEvent.VK_W];
         abajo = teclas[KeyEvent.VK_S];
         izquierda = teclas[KeyEvent.VK_A];
         derecha = teclas[KeyEvent.VK_D];
+        salir = teclas[KeyEvent.VK_ESCAPE];
     }
 
 

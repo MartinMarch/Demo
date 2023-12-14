@@ -7,18 +7,22 @@ public class Sprite {
     private final int lado; // El lado de un sprite en un sprite sheet cuadrado
     private int x, y; // Posición del sprite en la hoja de sprites
     public int[] pixeles; // Pixeles del sprite
-    private final HojaSprite hoja; // La hoja de sprites a la que pertenece este sprite
+    private HojaSprite hoja; // La hoja de sprites a la que pertenece este sprite
     public static Sprite prueba;
-    public static Sprite mapaMuro;
-    public static Sprite mapaHierbaCentral;
     public static Sprite grass1;
+    public static Sprite grass2;
+    public static Sprite grass3;
+    public static Sprite grass4;
+    public static Sprite vacio;
     static{
         try {
+            System.out.println("Cargando sprites...");
             prueba = new Sprite(32, 0, 0, HojaSprite.prueba);
-            mapaMuro = new Sprite(48,0,0, HojaSprite.mapa);
-            mapaHierbaCentral = new Sprite(48,4,1, HojaSprite.mapa);
-            grass1 = new Sprite(32,5,0,HojaSprite.grass);
-
+            grass1 = new Sprite(32,0,0,HojaSprite.grass);
+            grass2 = new Sprite(32,1,0,HojaSprite.grass);
+            grass3 = new Sprite(32,2,0,HojaSprite.grass);
+            grass4 = new Sprite(32,3,0,HojaSprite.grass);
+            vacio = new Sprite(32,0);
             System.out.println("Sprite creado correctamente");
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,6 +43,13 @@ public class Sprite {
             }
         }
 
+    }
+    public Sprite(final int lado, final int color){
+        this.lado = lado;
+        pixeles = new int[lado * lado];
+        for(int i = 0; i < pixeles.length; i++){
+            pixeles[i] = color;
+        }
     }
 
 

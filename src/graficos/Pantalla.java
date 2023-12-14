@@ -5,10 +5,9 @@ import mapa.tiles.Tile;
 public class Pantalla {
     private final int ancho;
     private final int alto;
-    //temporales
-    private final static int LADO_SPRITE = 32;
-    private final static int MASCARA_SPRITE = LADO_SPRITE - 1;
-    //fin temporales
+    private int diferenciaX;
+    private int diferenciaY;
+
     public final int[] pixeles;
 
     public Pantalla(int ancho, int alto) {
@@ -24,34 +23,34 @@ public class Pantalla {
         }
     }
 
-    public void mostrar(final int compensacionX, final int compensacionY){
-        for(int y = 0; y < alto; y++){
-            int posicionY = y + compensacionY;
-            if(posicionY < 0 || posicionY >= alto){
-                continue;
-            }
-            for(int x = 0; x < ancho; x++){
-                int posicionX = x + compensacionX;
-                if(posicionX < 0 || posicionX >= ancho){
-                    continue;
-                }
-                //Temporal
-                pixeles[posicionX + posicionY * ancho] = Sprite.grass1.pixeles[(x & MASCARA_SPRITE) + (y & MASCARA_SPRITE) * LADO_SPRITE];
-            }
-        }
-    }
-
     public void mostrarTile(int compensacionX, int compensacionY, Tile tile){
+        compensacionX -= diferenciaX;
+        compensacionY -= diferenciaY;
+
         for(int y = 0; y < tile.sprite.getLado(); y++){
             int posicionY = y + compensacionY;
             for(int x = 0; x < tile.sprite.getLado(); x++){
                 int posicionX = x + compensacionX;
-                if(posicionX < 0 || posicionX > ancho || posicionY < 0 ||posicionY > alto) {
+                if(posicionX < -tile.sprite.getLado() || posicionX >= ancho || posicionY < 0 || posicionY >= alto) {
                     break;
+                }
+                if (posicionX <0){
+                    posicionX = 0;
                 }
                 pixeles[posicionX + posicionY * ancho] = tile.sprite.pixeles[x + y * tile.sprite.getLado()];
             }
         }
+    }
+    public void setDiferencia(final int diferenciaX, final int diferenciaY){
+        this.diferenciaX = diferenciaX;
+        this.diferenciaY = diferenciaY;
+    }
+
+    public int getAncho(){
+        return ancho;
+    }
+    public int getAlto(){
+        return alto;
     }
 
 }
