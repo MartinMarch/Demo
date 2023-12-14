@@ -2,6 +2,7 @@ package logic;
 import control.Keyboard;
 import graficos.Pantalla;
 import mapa.Mapa;
+import mapa.MapaCargado;
 import mapa.MapaGenerado;
 
 import javax.swing.*;
@@ -40,7 +41,7 @@ public class Game extends Canvas implements Runnable{
 
         pantalla = new Pantalla(ANCHO, ALTO);
 
-        mapa = new MapaGenerado(128, 128);
+        mapa = new MapaCargado("/Estructuras/EstructuraMapa.png");
 
         teclado = new Keyboard();
         addKeyListener(teclado);

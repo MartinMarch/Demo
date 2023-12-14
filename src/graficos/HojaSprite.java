@@ -9,12 +9,11 @@ public class HojaSprite {
     private final int alto;
     public final int[] pixeles;
     // Coleccion de hojas de sprites
-    public static HojaSprite prueba;
-    public static HojaSprite mapa;
     public static HojaSprite grass;
+    public static HojaSprite knigth;
     static{
         try {
-            prueba = new HojaSprite("/sprites/Prueba.png", 320, 320);
+            knigth = new HojaSprite("/sprites/knight.png", 160, 384);
             grass = new HojaSprite("/sprites/grass.png",192,64);
 
             System.out.println("hojaSprite creada correctamente");

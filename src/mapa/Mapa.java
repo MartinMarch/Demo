@@ -8,6 +8,7 @@ public abstract class Mapa {
     protected int ancho;
     protected int alto;
     protected int[] Tiles;
+    protected Tile[] tilesCatalogo;
 
     public Mapa(int ancho, int alto) {
         this.ancho = ancho;
@@ -18,12 +19,13 @@ public abstract class Mapa {
 
     public Mapa(String ruta) {
         cargarMapa(ruta);
+        generarMapa();
     }
 
     protected void generarMapa() {
     }
 
-    public void cargarMapa(String ruta) {
+    protected void cargarMapa(String ruta) {
     }
 
     public void actualizar() {
@@ -40,7 +42,12 @@ public abstract class Mapa {
 
         for (int y = n; y < s; y++) {
             for (int x = o; x < e; x++) {
-                obtenerTile(x, y).mostrar(x, y, pantalla);
+                //obtenerTile(x, y).mostrar(x, y, pantalla);
+                if (x < 0 || y < 0 || x >= ancho || y >= alto) {
+                    Tile.vacio.mostrar(x, y, pantalla);
+                } else {
+                    tilesCatalogo[x + y * ancho].mostrar(x, y, pantalla);
+                }
             }
         }
     }

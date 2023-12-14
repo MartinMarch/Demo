@@ -11,7 +11,6 @@ public abstract class Tile {
     public static final int LADO_SPRITE = 32;
 
     // Colección de tiles
-    public static final Tile prueba = new TilePrueba(Sprite.prueba);
     public static final Tile vacio = new TileVacio(Sprite.vacio);
     public static final Tile grass1 = new Grass1(Sprite.grass1);
     public static final Tile grass2 = new Grass2(Sprite.grass2);
